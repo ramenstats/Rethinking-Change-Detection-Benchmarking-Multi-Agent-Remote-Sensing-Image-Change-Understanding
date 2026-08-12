@@ -1,0 +1,36 @@
+seed: 42
+output_dir: outputs/qwen7b
+
+model:
+  backend: qwen_transformers
+  name: Qwen/Qwen2.5-VL-7B-Instruct
+  torch_dtype: auto
+  device_map: auto
+  attn_implementation: sdpa
+  min_pixels: 200704        # 256 * 28 * 28
+  max_pixels: 802816        # 1024 * 28 * 28
+  max_new_tokens: 320
+
+planner:
+  mode: rules              # rules | llm
+
+caption_agent:
+  num_candidates: 5
+  keep_top_k: 2
+  temperatures: [0.15, 0.35, 0.55, 0.75, 0.95]
+  use_mask_if_available: true
+  weak_caption_field: weak_caption
+
+selector:
+  embedding_model: Qwen/Qwen3-Embedding-0.6B
+  device: cpu
+  mmr_lambda: 0.70
+
+vqa_agent:
+  use_knowledge_bridge: true
+  max_new_tokens: 320
+
+judge:
+  enabled: false
+  backend: same
+  max_new_tokens: 220

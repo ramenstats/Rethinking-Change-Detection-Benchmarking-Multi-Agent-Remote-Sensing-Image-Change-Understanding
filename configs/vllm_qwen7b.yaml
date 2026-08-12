@@ -1,0 +1,26 @@
+seed: 42
+output_dir: outputs/vllm_qwen7b
+model:
+  backend: openai_compatible
+  name: Qwen/Qwen2.5-VL-7B-Instruct
+  base_url: http://localhost:8000/v1
+  api_key: EMPTY
+  max_new_tokens: 320
+planner:
+  mode: rules
+caption_agent:
+  num_candidates: 5
+  keep_top_k: 2
+  temperatures: [0.15, 0.35, 0.55, 0.75, 0.95]
+  use_mask_if_available: true
+selector:
+  embedding_model: Qwen/Qwen3-Embedding-0.6B
+  device: cpu
+  mmr_lambda: 0.70
+vqa_agent:
+  use_knowledge_bridge: true
+  max_new_tokens: 320
+judge:
+  enabled: false
+  backend: same
+  max_new_tokens: 220

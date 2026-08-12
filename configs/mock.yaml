@@ -1,0 +1,25 @@
+seed: 42
+output_dir: outputs/mock
+model:
+  backend: mock
+  name: mock
+  max_new_tokens: 100
+planner:
+  mode: rules
+caption_agent:
+  num_candidates: 3
+  keep_top_k: 1
+  temperatures: [0.2, 0.5, 0.8]
+  use_mask_if_available: true
+  weak_caption_field: weak_caption
+selector:
+  embedding_model: none
+  device: cpu
+  mmr_lambda: 0.70
+vqa_agent:
+  use_knowledge_bridge: true
+  max_new_tokens: 100
+judge:
+  enabled: false
+  backend: same
+  max_new_tokens: 100
